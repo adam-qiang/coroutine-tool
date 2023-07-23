@@ -1,43 +1,29 @@
-<p align="center">
-<a href="https://pkg.go.dev/github.com/adam-qiang/coroutine-tool"><img src="https://pkg.go.dev/badge/github.com/adam-qiang/coroutine-tool.svg" alt="Go Reference"></a>
-<a href="https://en.wikipedia.org/wiki/MIT_License" rel="nofollow"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" style="max-width:100%;"></a>
-</p>
-
----
-
-# coroutine-tool
-
-利用GO语言的原生协程并发处理任务
-
-## 安装
-
-```go
- go get github.com/adam-qiang/coroutine-tool@latest
-```
-
-## Demo
-
-```go
-package main
+package tests
 
 import (
 	"coroutine-github.com/adam-qiang/coroutine-tool/pool"
 	"coroutine-github.com/adam-qiang/coroutine-tool/task"
+	"testing"
 	"time"
 )
 
-func main() {
+func TestRunTask(t *testing.T) {
 	//创建一个任务
 	task1 := task.CreateTask(func() error {
+		//fmt.Println(time.Now())
+
 		time.Sleep(time.Second * 1)
 		return nil
 	})
 	task2 := task.CreateTask(func() error {
-		time.Sleep(time.Second * 10)
+		//fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+		//time.Sleep(time.Second * 1)
 		return nil
 	})
 
 	task3 := task.CreateTask(func() error {
+		//fmt.Println(time.Now().Format("2006-01-02"))
+		//time.Sleep(time.Second * 1)
 		return nil
 	})
 
@@ -57,5 +43,3 @@ func main() {
 	//执行线程池
 	createPool.Run(3*50, true, "")
 }
-
-```
